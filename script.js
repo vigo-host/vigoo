@@ -30,13 +30,19 @@ submitName.addEventListener('click', () => {
   apologyText.innerHTML = `Aku gak bermaksud bikin kamu kesel.<br>Maafin aku, ya?`;
 });
 
+let noScale = 1;
+
 noBtn.addEventListener('click', () => {
-  noScale -= 0.1;
-  if (noScale < 0.3) noScale = 0.3;
-  yesScale += 0.1;
-  if (yesScale > 1.8) yesScale = 1.8;
+  noScale -= 0.15;            // tiap klik makin kecil
+
+  if (noScale <= 0.25) {
+	noScale = 0.25;           // batas minimum
+	noBtn.style.pointerEvents = 'none'; // akhirnya gak bisa diklik
+	noBtn.textContent = '...';
+  }
+
   noBtn.style.transform = `scale(${noScale})`;
-  yesBtn.style.transform = `scale(${yesScale})`;
+  noBtn.style.opacity = noScale; // sekalian makin pudar
 });
 
 yesBtn.addEventListener('click', () => {
@@ -49,7 +55,7 @@ yesBtn.addEventListener('click', () => {
 	noScale = 1;
 	yesScale = 1;
 	noBtn.style.transform = `scale(1)`;
-	yesBtn.style.transform = `scale(1)`;
+	yesBtn.style.transform = `scale(${1 + (1 - noScale) * 0.4})`;
   }, 5000);
 });
 
