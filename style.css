@@ -210,3 +210,17 @@ footer {
   button { font-size: 0.9rem; padding: 8px 18px; }
   .popup-content { padding: 32px 28px; max-width: 90%; }
 }
+
+/* efek tombol */
+.btn-group {
+  position: relative;
+}
+
+#noBtn {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+#yesBtn {
+  transition: transform 0.3s ease;
+}
