@@ -13,6 +13,7 @@
       height: 100vh;
       background: #ffe6f0;
       margin: 0;
+      position: relative;
     }
 
     .card {
@@ -72,6 +73,27 @@
     p {
       font-size: 16px;
     }
+
+    /* CREDIT */
+    .credit {
+      position: fixed;       /* tetap di layar */
+      bottom: 20px;          /* jarak dari bawah layar */
+      left: 50%;             /* posisikan di tengah horizontal */
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.7;
+      color: black;
+      line-height: 1.4;
+      pointer-events: none;  /* supaya tidak mengganggu klik tombol */
+    }
+
+    .credit a {
+      pointer-events: auto;  /* link tetap bisa diklik */
+      color: #7F80EF;
+      text-decoration: none;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -85,23 +107,20 @@
     <button id="submitName">Lanjut →</button>
   </div>
 
-<!-- CREDIT -->
-<div class="credit">
-    Credit by Vigoo<br>
-    <a href="https://www.tiktok.com/@.ovidio_guzman?_r=1&_t=ZS-92CF4U7K3Mb" 
-       target="_blank" 
-       rel="noopener" 
-       style="color: #7F80EF; text-decoration: none; font-weight: bold;">
-        TikTok: @.ovidio_guzman
-    </a>
-</div>
-  
   <!-- Kartu Permintaan Maaf -->
   <div class="card" id="apologyCard">
     <h1>Maafin Aku Yaa Plisss 😣🙏</h1>
     <p id="apologyText"></p>
     <button id="yesBtn">Maafin 💖</button>
     <button id="noBtn">Engga 😢</button>
+  </div>
+
+  <!-- CREDIT -->
+  <div class="credit">
+    Credit by Vigoo<br>
+    <a href="https://www.tiktok.com/@.ovidio_guzman?_r=1&_t=ZS-92CF4U7K3Mb" target="_blank" rel="noopener">
+        TikTok: @.ovidio_guzman
+    </a>
   </div>
 
   <script>
@@ -142,19 +161,6 @@
           `Aku gak bermaksud bikin kamu kesel.<br>Maafin aku, ya?`;
       });
 
-/* CREDIT */
-.credit{
-    position:fixed;
-    bottom:25px;
-    left:50%;          
-    transform:translateX(-50%);
-    text-align:center;
-    font-size:12px;
-    opacity:0.7;
-    color:black;
-    line-height:1.4;
-    }
-    
       // Tombol Engga makin kecil, Maafin makin gede
       noBtn.addEventListener('click', () => {
         noScale -= 0.15;
@@ -185,4 +191,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
