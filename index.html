@@ -85,6 +85,17 @@
     <button id="submitName">Lanjut →</button>
   </div>
 
+<!-- CREDIT -->
+<div class="credit">
+    Credit by Vigoo<br>
+    <a href="https://www.tiktok.com/@.ovidio_guzman?_r=1&_t=ZS-92CF4U7K3Mb" 
+       target="_blank" 
+       rel="noopener" 
+       style="color: #7F80EF; text-decoration: none; font-weight: bold;">
+        TikTok: @.ovidio_guzman
+    </a>
+</div>
+  
   <!-- Kartu Permintaan Maaf -->
   <div class="card" id="apologyCard">
     <h1>Maafkan aku</h1>
@@ -131,6 +142,19 @@
           `Aku gak bermaksud bikin kamu kesel.<br>Maafin aku, ya?`;
       });
 
+/* CREDIT */
+.credit{
+    position:fixed;
+    bottom:25px;
+    left:50%;          
+    transform:translateX(-50%);
+    text-align:center;
+    font-size:12px;
+    opacity:0.7;
+    color:black;
+    line-height:1.4;
+    }
+    
       // Tombol Engga makin kecil, Maafin makin gede
       noBtn.addEventListener('click', () => {
         noScale -= 0.15;
