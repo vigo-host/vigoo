@@ -1,60 +1,164 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-  const nameCard = document.getElementById('nameCard');
-  const apologyCard = document.getElementById('apologyCard');
-  const nicknameInput = document.getElementById('nickname');
-  const submitName = document.getElementById('submitName');
-  const apologyText = document.getElementById('apologyText');
-  const yesBtn = document.getElementById('yesBtn');
-  const noBtn = document.getElementById('noBtn');
-
-  let nickname = '';
-  let noScale = 1;
-  let yesScale = 1;
-
-  // ===== TOMBOL LANJUT =====
-  submitName.addEventListener('click', () => {
-    nickname = nicknameInput.value.trim();
-    if (!nickname) {
-      alert('Isi dulu nama panggilan kamu dong maniezzz');
-      return;
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartu Maaf 💌</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #ffe6f0;
+      margin: 0;
     }
 
-    nameCard.style.display = 'none';
-    apologyCard.style.display = 'block';
+    .card {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      text-align: center;
+      max-width: 350px;
+      width: 100%;
+      display: none;
+    }
 
-    apologyCard.querySelector('h1').textContent =
-      `${nickname}, aku minta maaf`;
+    #nameCard {
+      display: block;
+    }
 
-    apologyText.innerHTML =
-      `Aku gak bermaksud bikin kamu kesel.<br>Maafin aku, ya?`;
-  });
+    input {
+      width: 80%;
+      padding: 10px;
+      margin-top: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
 
-  // ===== TOMBOL ENGGA MAKIN KECIL, MAAFIN MAKIN GEDE =====
-  noBtn.addEventListener('click', () => {
-    noScale -= 0.15;
-    if (noScale < 0.25) noScale = 0.25;
+    button {
+      margin-top: 20px;
+      padding: 10px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
-    yesScale += 0.15;
-    if (yesScale > 1.6) yesScale = 1.6;
+    #submitName {
+      background-color: #ff4d6d;
+      color: white;
+    }
 
-    noBtn.style.transform = `scale(${noScale})`;
-    noBtn.style.opacity = noScale;
+    #yesBtn {
+      background-color: #4caf50;
+      color: white;
+      margin-right: 16px;
+    }
 
-    yesBtn.style.transform = `scale(${yesScale})`;
-  });
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+    }
 
-  // ===== TOMBOL MAAFIN → TAMPIL KARTU UCAPAN =====
-  yesBtn.addEventListener('click', () => {
-    apologyCard.innerHTML = `
-      <h1>🤍 Terima Kasih 🤍</h1>
-      <p style="margin-top:16px">
-        Makasih ya <b>${nickname}</b><br>
-        karena udah mau maafin aku.
-        <br><br>
-        Aku bakal lebih jaga sikap dan perasaan kamu.
-      </p>
-    `;
-  });
+    h1 {
+      margin-bottom: 16px;
+    }
 
-});
+    p {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Kartu Masukkan Nama -->
+  <div class="card" id="nameCard">
+    <h1>Hai! 😅</h1>
+    <p>Siapa nama panggilanmu?</p>
+    <input type="text" id="nickname" placeholder="Nama panggilan...">
+    <br>
+    <button id="submitName">Lanjut →</button>
+  </div>
+
+  <!-- Kartu Permintaan Maaf -->
+  <div class="card" id="apologyCard">
+    <h1>Maafkan aku</h1>
+    <p id="apologyText"></p>
+    <button id="yesBtn">Maafin 💖</button>
+    <button id="noBtn">Engga 😢</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const nameCard = document.getElementById('nameCard');
+      const apologyCard = document.getElementById('apologyCard');
+      const nicknameInput = document.getElementById('nickname');
+      const submitName = document.getElementById('submitName');
+      const apologyText = document.getElementById('apologyText');
+      const yesBtn = document.getElementById('yesBtn');
+      const noBtn = document.getElementById('noBtn');
+
+      if (!nameCard || !apologyCard || !nicknameInput || !submitName || !apologyText || !yesBtn || !noBtn) {
+        console.error("Satu atau lebih elemen HTML tidak ditemukan. Pastikan semua id sudah sesuai.");
+        return;
+      }
+
+      let nickname = '';
+      let noScale = 1;
+      let yesScale = 1;
+
+      // Tombol Lanjut
+      submitName.addEventListener('click', () => {
+        nickname = nicknameInput.value.trim();
+        if (!nickname) {
+          alert('Isi dulu nama panggilan kamu dong maniezzz');
+          return;
+        }
+
+        nameCard.style.display = 'none';
+        apologyCard.style.display = 'block';
+
+        apologyCard.querySelector('h1').textContent =
+          `${nickname}, aku minta maaf`;
+
+        apologyText.innerHTML =
+          `Aku gak bermaksud bikin kamu kesel.<br>Maafin aku, ya?`;
+      });
+
+      // Tombol Engga makin kecil, Maafin makin gede
+      noBtn.addEventListener('click', () => {
+        noScale -= 0.15;
+        if (noScale < 0.25) noScale = 0.25;
+
+        yesScale += 0.15;
+        if (yesScale > 1.6) yesScale = 1.6;
+
+        noBtn.style.transform = `scale(${noScale})`;
+        noBtn.style.opacity = noScale;
+
+        yesBtn.style.transform = `scale(${yesScale})`;
+      });
+
+      // Tombol Maafin → tampil kartu ucapan
+      yesBtn.addEventListener('click', () => {
+        apologyCard.innerHTML = `
+          <h1>🤍 Terima Kasih 🤍</h1>
+          <p style="margin-top:16px">
+            Makasih ya <b>${nickname}</b><br>
+            karena udah mau maafin aku.
+            <br><br>
+            Aku bakal lebih jaga sikap dan perasaan kamu.
+          </p>
+        `;
+      });
+
+    });
+  </script>
+</body>
+  </html>
